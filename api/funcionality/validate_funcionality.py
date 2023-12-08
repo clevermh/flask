@@ -7,3 +7,11 @@ class FuncionalidadCreate(BaseModel):
     nombre_funcionalidad: Optional[str] = None
     link: Optional[str] = None
     icono: Optional[str] = None 
+    estado: Optional[int] = None
+
+class FuncionalidadUpdate(BaseModel):
+    id_funcionalidad:  Optional[int] = None 
+    nombre_funcionalidad: Optional[str] = None
+    link: Optional[str] = None
+    icono: Optional[str] = None
+    estado: Optional[int] = None
