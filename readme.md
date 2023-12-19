@@ -22,12 +22,15 @@
 
 ### Run Project with docker
 
-- ` docker build -t flask_api -f develop.Dockerfile . `
-- ` docker run -p 8000:8000 flask_api `
+- ` docker build -t flask -f develop.Dockerfile . `
+- ` docker run -p 8000:8000 flask`
 
 
 ![](images/run_docker.png)
 
+### Health Check Project with docker
+
+![](images/Health_check_docker.png)
 
 ## Correr en una maquina ec2
 
@@ -35,14 +38,14 @@
 - Conectarse a la instancia mediante SSH y instalar
     - ` sudo yum install git -y `
 - Clonar el repositorio
-    - git clone https://github.com/Rojas-Andres/api-flask.git
+    - git clone https://github.com/clevermh/PYTHONAPP.git
 - Entrar a la carpeta donde se clono el repo y crear el archivo .env 
 - Instalar docker
     - sudo yum install docker
 - Correr los comandos para iniciar docker
     - ` sudo service docker start `
-    - ` docker build -t flask_api -f develop.Dockerfile . `
-    - ` docker run -p 8000:8000 flask_api `
+    - ` docker build -t flask -f develop.Dockerfile . `
+    - ` docker run -p 8000:8000 flask `
 ![](images/run_docker.png)
 ![](images/run_aws.png)
 ## Anotaciones 

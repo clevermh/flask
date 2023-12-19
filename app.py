@@ -10,7 +10,13 @@ from api.roles.roles import api_roles
 from api.permisos.permisos import api_permisos
 from api.usuario.usuario import api_usuario
 from api.subfuncionalidad.subfuncionalidad import api_subfuncionalidad
+from api.asigroles.asigroles import api_asigroles
+from api.asigperfiles.asigperfiles import api_asigperfiles
+from api.asigaccesos.asigaccesos import api_asigaccesos
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 app.config["SECRET_KEY"] = "Th1s1ss3cr3t"
 
 # BD
@@ -18,7 +24,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = settings.DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
-session_bd = Session()
+# session_bd = Session()
 
 app.register_blueprint(api_audits)
 app.register_blueprint(api_funcionality)
@@ -27,11 +33,15 @@ app.register_blueprint(api_roles)
 app.register_blueprint(api_permisos)
 app.register_blueprint(api_usuario)
 app.register_blueprint(api_subfuncionalidad)
+app.register_blueprint(api_asigroles)
+app.register_blueprint(api_asigperfiles)
+app.register_blueprint(api_asigaccesos)
 
-@app.route("/", methods=["GET"])
-def index():
-    return {"respuesta": "Bienvenido a la API"}
+
+@app.route("/health", methods=["GET"])
+def Health_Check():
+    return "OK"
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8005)
+    app.run(debug=True, host="0.0.0.0", port=8000)

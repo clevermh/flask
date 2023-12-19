@@ -1,6 +1,6 @@
 from db.db import session
 from sqlalchemy import select
-from db.models import permisos
+from db.models import permisos,Perfiles
 from flask import Blueprint, jsonify, request 
 from sqlalchemy.orm import Session
 
@@ -17,6 +17,13 @@ def generic_post(data):
 
 
 def get_permisos():
+    query = session.query(
+		permisos.id_permiso,
+		permisos.nombre_permiso,
+		permisos.fecha_creacion,
+		permisos.estado,
+
+    ).filter(permisos.estado==1)
     query = session.query(
 		permisos.id_permiso,
 		permisos.nombre_permiso,
@@ -41,7 +48,7 @@ def update_permisos(id_permisos, data):
     except Exception as e:
         session.rollback()
         raise Exception("Error al actualizar el registro")
-    data_permisos= validate_permisos(int(data_permisos.id_permisos))
+    data_permisos= validate_permisos(int(data_permisos.id_permiso))
     return format_permisos(data_permisos)
 
 

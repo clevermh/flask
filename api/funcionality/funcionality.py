@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 from api.funcionality.validate_funcionality import FuncionalidadCreate, FuncionalidadUpdate
 from api.funcionality.utils import update_funcionalidad, create_funcionalidad, get_funcionalitys, validate_funcionalidad, format_funcionalidad
 
-api_funcionality = Blueprint("Api funcionalidad", __name__, url_prefix="/api/funcionality")
+api_funcionality = Blueprint("Api funcionalidad", __name__, url_prefix="/api/funcionalidad")
 
 
 @api_funcionality.route("/", methods=["GET"])

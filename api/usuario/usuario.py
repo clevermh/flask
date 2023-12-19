@@ -1,20 +1,22 @@
 
 from flask import Blueprint, jsonify, request
-from api.usuario.utils import format_usuario
+from api.usuario.utils import format_usuario, get_usuarioselect
 from api.usuario.utils import update_usuario
 from api.usuario.utils import create_usuario 
 from api.usuario.utils import get_usuario, validate_usuario 
 
 from api.usuario.validate_usuario import usuarioCreate ,  usuarioUpdate
 
-api_usuario = Blueprint("Api usuario", __name__, url_prefix="/api/usuario")
+api_usuario = Blueprint("Api usuario", __name__, url_prefix="/api/usuarios")
 
 @api_usuario.route("/", methods=["GET"])
 def getAllusuario():
     """
     Get all usuario
     """
-    data_usuario = get_usuario()
+    data_usuario = get_usuarioselect()
+    print("My Join Query: ",str(data_usuario))
+    # data_usuario = get_usuario()
     return {
 		"message": " usuario consulta exitosamente",
         "status": 1,

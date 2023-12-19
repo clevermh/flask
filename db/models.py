@@ -78,5 +78,30 @@ class usuario(Base):
     fecha_creacion= Column(Date)
     estado= Column(Integer)
 
+class asigroles(Base):
+    __tablename__ = "tb_seg_asigroles" 
 
- 
+    id_asigroles= Column(Integer, primary_key=True)
+    id_rol= Column(Integer)
+    id_permiso= Column(Integer)
+    fecha_creacion= Column(Date)
+    estado= Column(Integer)
+
+class asigperfiles(Base):
+    __tablename__ = "tb_seg_asigperfiles" 
+
+    id_asigperfiles= Column(Integer, primary_key=True)
+    id_perfiles= Column(Integer)
+    id_funcionalidad= Column(Integer)
+    fecha_creacion= Column(Date)
+    estado= Column(Integer)
+
+class asigaccesos(Base):
+    __tablename__ = "tb_seg_asigaccesos" 
+
+    id_asigaccesos= Column(Integer,  primary_key=True)
+    id_usuario= Column(Integer)
+    id_asigperfiles= Column(Integer)
+    id_asigroles= Column(Integer)
+    fecha_creacion= Column(Date)
+    estado= Column(Integer)

@@ -1,8 +1,9 @@
 
 
+import json
 from db.db import session
 from sqlalchemy import select
-from db.models import usuario
+from db.models import usuario,asigaccesos
 from flask import Blueprint, jsonify, request 
 from sqlalchemy.orm import Session
 
@@ -16,6 +17,53 @@ def generic_post(data):
         session.rollback()
         raise Exception("Error al crear el registro")
     return data
+
+def get_usuarioselect():
+    result = session.execute("select * from tb_seg_asigaccesos inner join tb_seg_usuario on tb_seg_asigaccesos.id_usuario = tb_seg_usuario.id_usuario ")
+
+    # If no rows were returned in the result, return an empty list
+    if result.returns_rows == False:
+        response = []
+
+    # Convert the response to a plain list of dicts
+    else:
+        response = [dict(row) for row in result]
+
+    # Output the query result as JSON
+    # print(json.dumps(response))
+    return response
+    # # result = session.query(usuario).join(asigaccesos, usuario.id_usuario==asigaccesos.id_usuario)
+    # query = (
+    #     session.query(usuario).join(asigaccesos, usuario.id_usuario==asigaccesos.id_usuario).all()
+    # )
+    # data_usuario = []
+    # data = dict()
+    # for i in query:
+       
+    #     data["id_usuario"] = int(data["id_usuario"]) 
+    #     data_usuario.append(data)
+    # return data_usuario
+
+    
+
+
+ 
+    # print("My Join Query: ",str(json.dumps(result)))
+    # for _a in result.all():
+    #     print (_a.id_usuario, _a.nombre)
+    # response = []
+    # response = [dict(row.items()) for row in result]
+    
+    # print ("My Join Querysss: ",json.dumps(response))
+    # # if result:
+    # #     response = []
+
+    # # # Convert the response to a plain list of dicts
+    # # else:
+    # #     response = [dict(row.items()) for row in result]
+
+    # # Output the query result as JSON
+    # return (json.dumps(response))
 
 
 def get_usuario():

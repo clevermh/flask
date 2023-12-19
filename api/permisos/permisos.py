@@ -41,7 +41,7 @@ def create_permiso():
 			}
 
 @api_permisos.route("/", methods=["PUT"])
-def update___permisos():
+def updatepermisos():
     """
     Create permisos
     """
@@ -55,7 +55,7 @@ def update___permisos():
     permisos_update = permisos_validate.dict(exclude_unset=True)
     if not permisos_update:
         return jsonify({"errors": "No hay datos para actualizar"}), 400
-    data_permisos = update_permisos(int(permisos_validate.id_permiso, permisos_update))
+    data_permisos = update_permisos(int(permisos_validate.id_permiso), permisos_update)
     return {
        
         "message": "permisos actualizado exitosamente",
